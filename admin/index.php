@@ -1,5 +1,10 @@
 <?php
 session_start();
+// Kiểm tra đăng nhập
+if (!isset($_SESSION['admin_logged_in'])) {
+    header("Location: /shoe-store/admin/login.php");
+    exit;
+}
 require_once '../includes/db.php';
 
 // Thống kê tổng quan
@@ -39,6 +44,7 @@ $revenue_chart = $pdo->query("
             <a href="/shoe-store/admin/products.php">👟 Sản phẩm</a>
             <a href="/shoe-store/admin/orders.php">📦 Đơn hàng</a>
             <a href="/shoe-store/" target="_blank">🌐 Xem shop</a>
+            <a href="/shoe-store/admin/logout.php">🚪 Logout</a>
         </nav>
     </aside>
 
